@@ -4,3 +4,6 @@ grill-me
 to-questionnaire
 humanize-writing
 technical-writing
+decision-memo
+workshop-design
+meeting-to-actions
