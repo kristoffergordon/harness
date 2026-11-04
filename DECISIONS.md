@@ -22,3 +22,8 @@ The Pocock-derived skills remain as a baseline. Keep, rewrite, or delete each ba
 
 ### 7 · Removed `/codebase-design` references
 `improve-codebase-architecture`, `tdd` and the HTML report pointed at a skill this repo never had. The seven-term vocabulary (module, interface, depth, seam, adapter, leverage, locality) now lives inline in `improve-codebase-architecture`; the terms are no longer defined, only named. The "deletion test" and related principles were dropped. Revisit if the architecture skill's output uses these terms inconsistently.
+
+### 8 · First skill batch from Simon and Pocock
+Added: `to-questionnaire`, `explain-code`, `diagnose-failure`, `primary-source-research`, `technical-writing`, `over-engineering-audit`, `handoff`, `humanize-writing`, `wizard`, `writing-for-agents`. Chosen for consulting, strategy and devops work (discovery, entering unfamiliar client repos, handovers, deployment walkthroughs).
+Left out on purpose: anything tied to Backlog.md or GitHub-issue workflows (`to-spec`, `to-tickets`, `wayfinder`, `triage`), TypeScript-only skills, and Pi-specific tooling. Subagent delegation (`bulk-read`, `test-log-analyst`, `present`) was removed from the copied skills rather than ported.
+Review after about two weeks of use. Delete what was not invoked.

@@ -28,4 +28,4 @@ This repo is public. Anything client- or employer-specific goes in `local/`, whi
 
 ## Credits
 
-`grill-me`, `improve-codebase-architecture`, `tdd`, `to-issues`, `to-prd`, and `ralph` come from [mattpocock/skills](https://github.com/mattpocock/skills) and are being adapted over time.
+`grill-me`, `improve-codebase-architecture`, `tdd`, `to-issues`, `to-prd`, `ralph`, `to-questionnaire`, `wizard`, and `writing-for-agents` come from [mattpocock/skills](https://github.com/mattpocock/skills). `explain-code`, `diagnose-failure`, `primary-source-research`, `technical-writing`, `over-engineering-audit`, `handoff`, and `humanize-writing` come from [simonamtoft/coding-harness](https://github.com/simonamtoft/coding-harness), with references to his Pi-specific tooling removed. All are being adapted over time.
