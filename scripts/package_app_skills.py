@@ -81,7 +81,7 @@ def build(name, out):
             if f.is_file():
                 z.write(f, f.relative_to(stage.parent).as_posix())
     shutil.rmtree(out / "_stage")
-    notes.append(f"-> {zip_path.relative_to(ROOT)}" + (f" (dropped: {', '.join(dropped)})" if dropped else ""))
+    notes.append(f"-> {zip_path}" + (f" (dropped: {', '.join(dropped)})" if dropped else ""))
     return [], notes
 
 
