@@ -1,0 +1,6 @@
+# Skills that also make sense in the Claude app (chat): no repo, shell, or git needed.
+# One name per line. Build the upload zips with: scripts/package_app_skills.py
+grill-me
+to-questionnaire
+humanize-writing
+technical-writing

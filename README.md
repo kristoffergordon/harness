@@ -14,6 +14,18 @@ cd skills
 
 The links point at the clone, so do not move it afterwards. Rerun after pulling. Start a new Claude Code session to pick up changes.
 
+## Claude app (claude.ai, desktop, mobile)
+
+Custom skills in the app are uploaded as zips per skill, and they are separate from Claude Code: uploading to the app does not touch `~/.claude`, and nothing you do in Claude Code reaches the app. Claude Code does download your app skills (into `~/.claude/skills/synced/`) when signed in with the same account, never the reverse. So this repo stays the source of truth and the app copies are built from it.
+
+```sh
+scripts/package_app_skills.py   # builds dist/app/<skill>.zip for each skill in app-skills.txt
+```
+
+Upload each zip in the app under Customize > Skills (Settings > Features in older UIs). Needs a paid plan with code execution on. Re-upload a zip after changing a skill. Only skills that need no repo, shell or git belong in `app-skills.txt`.
+
+Differences to expect in the app: Claude Code-only frontmatter such as `disable-model-invocation` is stripped, so explicit-only skills can trigger on their own; hooks and `CLAUDE.md` do not apply (put the "How to work with me" section of `CLAUDE.md` into your personal preferences instead); and a skill you upload is also synced down to Claude Code, so it appears twice on a machine where this repo is installed. The local copy wins by name; set `syncClaudeAiSkills` to `false` in `~/.claude/settings.json` if the duplicate bothers you.
+
 ## Hooks
 
 `install.sh` links `hooks/` into `~/.claude/hooks/` and adds three entries to `~/.claude/settings.json`. Anything else in that file is left alone, and the original is backed up first. Needs `python3`.
@@ -37,6 +49,7 @@ In client repos, add `.agent/` to `.git/info/exclude` rather than committing it.
 ```text
 CLAUDE.md          global instructions  -> ~/.claude/CLAUDE.md
 skills/<name>/     public skills        -> ~/.claude/skills/<name>
+app-skills.txt     skills also packaged for the Claude app
 hooks/             hook scripts         -> ~/.claude/hooks/ (registered in settings.json)
 scripts/           install helpers (settings merge); not installed
 local/skills/      gitignored; client/employer-internal skills, linked the same way
