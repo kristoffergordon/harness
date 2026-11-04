@@ -36,3 +36,9 @@ Simon's bash guard is 512 lines and his verifier needs a Python fingerprinter; P
 
 ### 11 · Hooks registered by merging into settings.json, not by linking it
 Linking `settings.json` (Simon's approach) would overwrite client-specific permissions and settings. `scripts/merge_settings.py` adds only missing hook entries and backs the file up. Alternative not taken: shipping hooks as a Claude Code plugin, which avoids editing settings but may be restricted on client machines and cannot carry `CLAUDE.md`. Revisit if the merge proves fragile.
+
+### 12 · Claude app skills are built from the repo, not authored there
+Sources: claude.ai uploads are manual per-skill zips and do not sync with Claude Code in either direction, apart from Claude Code downloading app skills. So `app-skills.txt` selects the skills that need no repo or shell (`grill-me`, `to-questionnaire`, `humanize-writing`, `technical-writing`) and `scripts/package_app_skills.py` builds the zips. Code-centric skills (`tdd`, `diagnose-failure`, `explain-code`, `wizard` and so on) are not ported: they have nothing to work on in chat. Better app skills are probably new, consulting-native ones (proposals, workshop design, decision memos) rather than ports.
+Renamed `grilling` to `grill-me` because the app requires the folder name to equal the `name` field.
+Open: the app's description limit is documented as 1,024 characters in one place and 200 in another; two skills exceed 200. Upload `humanize-writing` first to find out.
+Revisit: shipping everything as a plugin would put skills and hooks on one account-synced path, but plugin sync needs a claude.ai sign-in, which may not hold on client machines.
