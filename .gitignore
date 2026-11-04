@@ -1,0 +1,3 @@
+# Client- or employer-internal skills and notes. This repository is public.
+# install.sh still links local/skills/* into ~/.claude on the machines that have them.
+local/
