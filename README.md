@@ -5,13 +5,14 @@ My Claude Code harness: a global `CLAUDE.md` and a set of skills, versioned here
 ## Install
 
 ```sh
-git clone https://github.com/kristoffergordon/skills ~/skills
-~/skills/install.sh --dry-run   # preview
-~/skills/install.sh             # link; refuses to replace existing paths
-~/skills/install.sh --force     # back up (~/.skills-backups/<timestamp>) and replace
+git clone https://github.com/kristoffergordon/skills
+cd skills
+./install.sh --dry-run   # preview
+./install.sh             # link; refuses to replace existing paths
+./install.sh --force     # back up (~/.skills-backups/<timestamp>) and replace
 ```
 
-Rerun after pulling. Start a new Claude Code session to pick up changes.
+The links point at the clone, so do not move it afterwards. Rerun after pulling. Start a new Claude Code session to pick up changes.
 
 ## Layout
 
@@ -27,4 +28,4 @@ This repo is public. Anything client- or employer-specific goes in `local/`, whi
 
 ## Credits
 
-`grill-me`, `grill-with-docs`, `improve-codebase-architecture`, `tdd`, `to-issues`, `to-prd`, and `ralph` come from [mattpocock/skills](https://github.com/mattpocock/skills) and are being adapted over time.
+`grill-me`, `improve-codebase-architecture`, `tdd`, `to-issues`, `to-prd`, and `ralph` come from [mattpocock/skills](https://github.com/mattpocock/skills) and are being adapted over time.
