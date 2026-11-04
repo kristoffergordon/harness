@@ -27,3 +27,12 @@ The Pocock-derived skills remain as a baseline. Keep, rewrite, or delete each ba
 Added: `to-questionnaire`, `explain-code`, `diagnose-failure`, `primary-source-research`, `technical-writing`, `over-engineering-audit`, `handoff`, `humanize-writing`, `wizard`, `writing-for-agents`. Chosen for consulting, strategy and devops work (discovery, entering unfamiliar client repos, handovers, deployment walkthroughs).
 Left out on purpose: anything tied to Backlog.md or GitHub-issue workflows (`to-spec`, `to-tickets`, `wayfinder`, `triage`), TypeScript-only skills, and Pi-specific tooling. Subagent delegation (`bulk-read`, `test-log-analyst`, `present`) was removed from the copied skills rather than ported.
 Review after about two weeks of use. Delete what was not invoked.
+
+### 9 · Own hooks instead of copying Simon's or Pocock's
+Simon's bash guard is 512 lines and his verifier needs a Python fingerprinter; Pocock's guard regex-matches the raw command, so a commit message that mentions `reset --hard` is blocked. `guard_bash.py` parses commands into arguments instead. Plain `git push` is deliberately not blocked (Pocock blocks it): Claude should be able to push when asked, and the normal permission prompt covers the rest. Revisit if an unwanted push slips through.
+
+### 10 · Verifier is opt-in per project and content-trusted
+`.agent/verify.sh` is repo-controlled code run by a hook with no prompt, which is a code-execution path on client repos. It runs only after `verify-trust.sh` approves its exact hash, so Claude editing the verifier to make it pass also revokes trust. Taskfile discovery from Simon's version was dropped; add it if a project needs it.
+
+### 11 · Hooks registered by merging into settings.json, not by linking it
+Linking `settings.json` (Simon's approach) would overwrite client-specific permissions and settings. `scripts/merge_settings.py` adds only missing hook entries and backs the file up. Alternative not taken: shipping hooks as a Claude Code plugin, which avoids editing settings but may be restricted on client machines and cannot carry `CLAUDE.md`. Revisit if the merge proves fragile.

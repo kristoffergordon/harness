@@ -9,6 +9,9 @@
 #   CLAUDE.md          -> ~/.claude/CLAUDE.md
 #   skills/<name>      -> ~/.claude/skills/<name>
 #   local/skills/<name>-> ~/.claude/skills/<name>   (gitignored; client/employer-internal)
+#   hooks/*.{sh,py}    -> ~/.claude/hooks/
+#   and merges the hook entries into ~/.claude/settings.json (everything else in it is kept;
+#   the original is backed up first). Needs python3.
 #
 # Safe to rerun: links that already point here are left untouched.
 
@@ -20,7 +23,7 @@ for arg in "$@"; do
   case "$arg" in
     --force) FORCE=1 ;;
     --dry-run) DRY=1 ;;
-    -h|--help) sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown option: $arg" >&2; exit 2 ;;
   esac
 done
@@ -63,5 +66,22 @@ for dir in "$REPO"/skills/*/ "$REPO"/local/skills/*/; do
   dir="${dir%/}"
   link "$dir" "$CLAUDE_DIR/skills/$(basename "$dir")"
 done
+
+for f in "$REPO"/hooks/*.sh "$REPO"/hooks/*.py; do
+  [[ -f "$f" ]] && link "$f" "$CLAUDE_DIR/hooks/$(basename "$f")"
+done
+
+# Hook commands refer to $HOME when ~/.claude is in its default place, so settings.json stays portable.
+HOOKS_REF="$CLAUDE_DIR/hooks"
+[[ "$CLAUDE_DIR" == "$HOME/.claude" ]] && HOOKS_REF='$HOME/.claude/hooks'
+
+if command -v python3 >/dev/null 2>&1; then
+  merge_args=("$CLAUDE_DIR/settings.json" "$REPO/scripts/hooks.fragment.json" "$HOOKS_REF" --backup-dir "$BACKUP_DIR")
+  [[ $DRY -eq 1 ]] && merge_args+=(--dry-run)
+  python3 "$REPO/scripts/merge_settings.py" "${merge_args[@]}" || status=1
+else
+  echo "SKIPPED  python3 not found; hooks are linked but not registered in settings.json" >&2
+  status=1
+fi
 
 exit $status
