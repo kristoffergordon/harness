@@ -20,5 +20,5 @@ The Pocock-derived skills remain as a baseline. Keep, rewrite, or delete each ba
 ### 6 · Removed `grill-with-docs`; no `domain-modeling` skill
 `grill-with-docs` was a one-line wrapper around a `/domain-modeling` skill this repo never had. Client repos may not want `CONTEXT.md`/ADR files, so the docs-writing step was dropped from `improve-codebase-architecture` as well. Reading `CONTEXT.md`/ADRs when they exist is kept. Revisit if domain docs become a regular deliverable.
 
-### 7 · `/codebase-design` is still missing
-`improve-codebase-architecture`, `tdd` and its HTML report rely on it for vocabulary. Unresolved: write it, copy it from upstream, or strip the references.
+### 7 · Removed `/codebase-design` references
+`improve-codebase-architecture`, `tdd` and the HTML report pointed at a skill this repo never had. The seven-term vocabulary (module, interface, depth, seam, adapter, leverage, locality) now lives inline in `improve-codebase-architecture`; the terms are no longer defined, only named. The "deletion test" and related principles were dropped. Revisit if the architecture skill's output uses these terms inconsistently.
