@@ -42,3 +42,7 @@ Sources: claude.ai uploads are manual per-skill zips and do not sync with Claude
 Renamed `grilling` to `grill-me` because the app requires the folder name to equal the `name` field.
 Open: the app's description limit is documented as 1,024 characters in one place and 200 in another; two skills exceed 200. Upload `humanize-writing` first to find out.
 Revisit: shipping everything as a plugin would put skills and hooks on one account-synced path, but plugin sync needs a claude.ai sign-in, which may not hold on client machines.
+
+### 13 · Three consulting-native skills, written here rather than ported
+`decision-memo`, `workshop-design` and `meeting-to-actions` are original, built for consulting and strategy work and for both the app and Claude Code. Each has a "challenge the brief" step because the stated preference is a sparring partner, not a formatter: the memo skill must consider "do nothing" and the cheapest alternative, the workshop skill must ask whether a workshop is the right format, and the meeting skill refuses to invent owners or dates. Descriptions are under 200 characters on purpose.
+Not yet exercised on real tasks. Review after two weeks of use, like the rest.
