@@ -16,3 +16,9 @@ Pi extensions, probes suite, sandbox and read-routing layers, `stay-awake`. They
 
 ### 5 · Inherited skills stay until used
 The Pocock-derived skills remain as a baseline. Keep, rewrite, or delete each based on whether it gets invoked.
+
+### 6 · Removed `grill-with-docs`; no `domain-modeling` skill
+`grill-with-docs` was a one-line wrapper around a `/domain-modeling` skill this repo never had. Client repos may not want `CONTEXT.md`/ADR files, so the docs-writing step was dropped from `improve-codebase-architecture` as well. Reading `CONTEXT.md`/ADRs when they exist is kept. Revisit if domain docs become a regular deliverable.
+
+### 7 · `/codebase-design` is still missing
+`improve-codebase-architecture`, `tdd` and its HTML report rely on it for vocabulary. Unresolved: write it, copy it from upstream, or strip the references.
