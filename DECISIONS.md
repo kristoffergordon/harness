@@ -46,3 +46,8 @@ Revisit: shipping everything as a plugin would put skills and hooks on one accou
 ### 13 · Three consulting-native skills, written here rather than ported
 `decision-memo`, `workshop-design` and `meeting-to-actions` are original, built for consulting and strategy work and for both the app and Claude Code. Each has a "challenge the brief" step because the stated preference is a sparring partner, not a formatter: the memo skill must consider "do nothing" and the cheapest alternative, the workshop skill must ask whether a workshop is the right format, and the meeting skill refuses to invent owners or dates. Descriptions are under 200 characters on purpose.
 Not yet exercised on real tasks. Review after two weeks of use, like the rest.
+
+### 14 · Removed own `workshop-design`; fixes from the first review
+The Implement account already syncs a much fuller `workshop-design` (Design Star, before-during-after, SessionLab export). A same-named local skill wins by name, so it shadowed the better one in Claude Code and would have competed with it in the app. Deleted it and dropped it from `app-skills.txt`; `decision-memo` and `meeting-to-actions` stay because the account has no equivalent. Decision 13's workshop part is superseded.
+`verify-turn.sh` now resolves the project dir with `pwd -P`, matching `verify-trust.sh`; before, trust never matched through a symlinked path (macOS `/var` vs `/private/var`), so the verifier silently never ran.
+Not done: the Pocock plugin also provides `tdd`, `wizard`, `grill-me` and `writing-for-agents` under its own namespace. Redundant, not conflicting. Decide whether to uninstall the plugin or delete the local copies.
