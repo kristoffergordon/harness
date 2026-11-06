@@ -1,12 +1,12 @@
-# skills
+# harness
 
-My Claude Code harness: a global `CLAUDE.md` and a set of skills, versioned here and symlinked into `~/.claude`.
+My Claude Code harness: a global `CLAUDE.md`, skills, hooks and an installer, versioned here and symlinked into `~/.claude`.
 
 ## Install
 
 ```sh
-git clone https://github.com/kristoffergordon/skills
-cd skills
+git clone https://github.com/kristoffergordon/harness
+cd harness
 ./install.sh --dry-run   # preview
 ./install.sh             # link; refuses to replace existing paths
 ./install.sh --force     # back up (~/.skills-backups/<timestamp>) and replace
