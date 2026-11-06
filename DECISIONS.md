@@ -51,3 +51,6 @@ Not yet exercised on real tasks. Review after two weeks of use, like the rest.
 The Implement account already syncs a much fuller `workshop-design` (Design Star, before-during-after, SessionLab export). A same-named local skill wins by name, so it shadowed the better one in Claude Code and would have competed with it in the app. Deleted it and dropped it from `app-skills.txt`; `decision-memo` and `meeting-to-actions` stay because the account has no equivalent. Decision 13's workshop part is superseded.
 `verify-turn.sh` now resolves the project dir with `pwd -P`, matching `verify-trust.sh`; before, trust never matched through a symlinked path (macOS `/var` vs `/private/var`), so the verifier silently never ran.
 Not done: the Pocock plugin also provides `tdd`, `wizard`, `grill-me` and `writing-for-agents` under its own namespace. Redundant, not conflicting. Decide whether to uninstall the plugin or delete the local copies.
+
+### 15 · Repo renamed `skills` to `harness`
+The repo already carries `CLAUDE.md`, hooks and an installer, and is meant to grow beyond skills. Renamed on GitHub while there is one clone. The local folder keeps its old name on purpose: every symlink in `~/.claude` points at it, and the folder name affects nothing. The `skills/` subfolder stays. Still Claude Code only (#1); the name does not claim otherwise.
