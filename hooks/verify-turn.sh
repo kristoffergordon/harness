@@ -20,7 +20,7 @@ MAX_ROUNDS=3
 
 mode="${1:-stop}"
 input=$(cat)
-project="${CLAUDE_PROJECT_DIR:-$PWD}"
+project="$(cd "${CLAUDE_PROJECT_DIR:-$PWD}" 2>/dev/null && pwd -P)" || exit 0
 verifier="$project/.agent/verify.sh"
 [[ -x "$verifier" ]] || exit 0
 git -C "$project" rev-parse --git-dir >/dev/null 2>&1 || exit 0

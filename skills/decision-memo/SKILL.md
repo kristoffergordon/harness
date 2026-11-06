@@ -48,3 +48,5 @@ Before delivering, check that:
 - nothing is claimed that the user's material does not support.
 
 Write in plain English and keep the tone factual. Deliver in the format the environment suits best: a document in the Claude app, Markdown in a terminal. After the memo, list the open assumptions the user should verify before sending.
+
+If the Implement skills are available, hand off rather than duplicating them: `scqa-framing` to frame the situation and key question for a senior reader, `impact-case` when the benefit needs a quantified case, and `implement-powerpoint` or `docx` when the memo must become slides or a Word file.

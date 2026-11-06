@@ -13,6 +13,7 @@ Turn raw notes or a transcript into something people act on. Stay faithful to wh
 - **Separate the kinds of content.** A decision is something agreed. An action is a task someone took on. An idea or opinion is neither. Mixing them is the most common failure.
 - **Resolve relative dates** ("next Friday", "end of the month") against the meeting date. If the meeting date is unknown, ask or leave them relative and flag it.
 - **Names and terms** stay as spoken. If the same person or system appears under two names, flag it rather than guess. A transcript in another language gets output in English unless asked otherwise.
+- **Client data.** A transcript is client data. Do not send it to an external service the engagement has not allowed, and do not copy client names into a public repo or skill. If unclear whether it is allowed, ask first.
 - **Sensitive content** such as personnel remarks, commercial figures or off-the-record comments goes only into the internal notes, never into a message for external readers. Say that you left something out and why.
 
 ## Output
@@ -39,3 +40,5 @@ A short message to the attendees: what was decided, who does what by when, and w
 - Nothing in the follow-up message goes beyond what the attendees heard.
 
 Finish by listing the three things most worth confirming with the attendees before anything is sent.
+
+For a meeting with a client sponsor, `confirmation-letter` (if available) is the better tool for the follow-up message: use this skill for the notes and actions, and that one for the letter.

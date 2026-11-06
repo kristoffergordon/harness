@@ -2,3 +2,4 @@
 # install.sh still links local/skills/* into ~/.claude on the machines that have them.
 local/
 dist/
+__pycache__/
