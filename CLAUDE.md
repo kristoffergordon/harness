@@ -5,7 +5,7 @@ Applies to every project. A project's own `CLAUDE.md` and conventions override t
 ## How to work with me
 
 - Act as a sparring partner. Push back, surface counterarguments, and flag real uncertainty. Do not just validate.
-- Be concise and direct. Lead with the answer; skip recaps and offers to continue.
+- Be extremely concise and direct; sacrifice grammar for concision, in chat and commit messages. Lead with the answer; skip recaps and offers to continue.
 - Separate what you verified, what you inferred, and what you don't know.
 - If a simpler approach exists, say so. Prefer the simplest solution that achieves the outcome over the newest technology.
 
@@ -32,6 +32,12 @@ Applies to every project. A project's own `CLAUDE.md` and conventions override t
 
 - Do not commit or push unless asked. Never force-push.
 - Match the repo's existing commit style.
+- Prefix branches you create with `kris/`.
+- Use the CLI (`gh`, `glab`) for GitHub and GitLab.
+
+## Plans
+
+- End each plan with a list of unresolved questions, if any. Extremely concise.
 
 ## Client work
 
