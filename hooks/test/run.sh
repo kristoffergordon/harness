@@ -4,3 +4,4 @@ set -e
 cd "$(dirname "${BASH_SOURCE[0]}")"
 python3 -I test_guard_bash.py
 bash verify-turn-test.sh
+python3 -I test_merge_settings.py

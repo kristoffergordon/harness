@@ -28,7 +28,7 @@ Differences to expect in the app: Claude Code-only frontmatter such as `disable-
 
 ## Hooks
 
-`install.sh` links `hooks/` into `~/.claude/hooks/` and adds three entries to `~/.claude/settings.json`. Anything else in that file is left alone, and the original is backed up first. Needs `python3`.
+`install.sh` links `hooks/` into `~/.claude/hooks/` and merges `scripts/settings.fragment.json` into `~/.claude/settings.json`: three hook entries and `permissions.deny` rules for common secret paths (`~/.ssh`, `~/.aws`, `~/.azure`, `.env` and so on). Anything else in that file is left alone, and the original is backed up first. Needs `python3`.
 
 - **`guard_bash.py`** (PreToolUse on Bash) blocks force-push, `git reset --hard`, `git clean -f`, `git branch -D`, `git checkout .`/`git restore .`, `sudo`, download-piped-to-shell, and recursive `rm` of `/`, `~` or `.`. Plain `git push` is not blocked. It guards against accidents, not a determined bypass.
 - **`verify-turn.sh`** (UserPromptSubmit + Stop) runs a project's `.agent/verify.sh` after a turn that changed the working tree, and returns failures to Claude for up to three fix attempts. It does nothing in projects without that file.
@@ -42,7 +42,9 @@ printf '#!/bin/sh\npytest -q && ruff check . && mypy .\n' > .agent/verify.sh && 
 
 In client repos, add `.agent/` to `.git/info/exclude` rather than committing it.
 
-`CLAUDE_HOOK_DISABLE=1` bypasses both hooks. Run the offline tests with `hooks/test/run.sh`.
+The deny rules cover Claude's file tools only, not `cat` through Bash.
+
+`CLAUDE_HOOK_DISABLE=1` bypasses both hooks. Run the offline tests with `hooks/test/run.sh`. This repo's own `.agent/verify.sh` runs them, so approve it once with `~/.claude/hooks/verify-trust.sh` and every turn that edits the harness is checked.
 
 ## Layout
 
@@ -52,6 +54,7 @@ skills/<name>/     public skills        -> ~/.claude/skills/<name>
 app-skills.txt     skills also packaged for the Claude app
 hooks/             hook scripts         -> ~/.claude/hooks/ (registered in settings.json)
 scripts/           install helpers (settings merge); not installed
+.agent/verify.sh   this repo's verifier (runs hooks/test/run.sh)
 local/skills/      gitignored; client/employer-internal skills, linked the same way
 ralph/             loop scripts; copy into a project, not installed
 DECISIONS.md       what was tried or rejected, and why

@@ -10,7 +10,7 @@
 #   skills/<name>      -> ~/.claude/skills/<name>
 #   local/skills/<name>-> ~/.claude/skills/<name>   (gitignored; client/employer-internal)
 #   hooks/*.{sh,py}    -> ~/.claude/hooks/
-#   and merges the hook entries into ~/.claude/settings.json (everything else in it is kept;
+#   and merges the hook entries and secret-path deny rules into ~/.claude/settings.json (everything else in it is kept;
 #   the original is backed up first). Needs python3.
 #
 # Safe to rerun: links that already point here are left untouched.
@@ -76,7 +76,7 @@ HOOKS_REF="$CLAUDE_DIR/hooks"
 [[ "$CLAUDE_DIR" == "$HOME/.claude" ]] && HOOKS_REF='$HOME/.claude/hooks'
 
 if command -v python3 >/dev/null 2>&1; then
-  merge_args=("$CLAUDE_DIR/settings.json" "$REPO/scripts/hooks.fragment.json" "$HOOKS_REF" --backup-dir "$BACKUP_DIR")
+  merge_args=("$CLAUDE_DIR/settings.json" "$REPO/scripts/settings.fragment.json" "$HOOKS_REF" --backup-dir "$BACKUP_DIR")
   [[ $DRY -eq 1 ]] && merge_args+=(--dry-run)
   python3 "$REPO/scripts/merge_settings.py" "${merge_args[@]}" || status=1
 else

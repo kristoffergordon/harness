@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Add this repo's hook entries to a Claude Code settings.json without touching anything else.
+"""Add this repo's hook entries and deny rules to a Claude Code settings.json without touching anything else.
 
 usage: merge_settings.py SETTINGS FRAGMENT HOOKS_DIR [--dry-run] [--backup-dir DIR]
 
-Idempotent: an entry is added only if no hook with the same command exists under
-the same event and matcher. Refuses to touch a file that is not valid JSON.
+Idempotent: a hook is added only if no hook with the same command exists under
+the same event and matcher; a deny rule only if the same string is not already
+in permissions.deny. Refuses to touch a file that is not valid JSON.
 """
 import argparse
 import json
@@ -53,11 +54,16 @@ def main():
                     target["hooks"].append(hook)
                     added += 1
 
-    if not added:
-        print(f"ok       hooks already in {args.settings}")
+    deny = config.setdefault("permissions", {}).setdefault("deny", [])
+    new_rules = [r for r in fragment.get("permissions", {}).get("deny", []) if r not in deny]
+    deny.extend(new_rules)
+
+    summary = f"+{added} hook entries, +{len(new_rules)} deny rules"
+    if not added and not new_rules:
+        print(f"ok       hooks and deny rules already in {args.settings}")
         return 0
     if args.dry_run:
-        print(f"would add {added} hook entries to {args.settings}")
+        print(f"would update {args.settings} ({summary})")
         return 0
 
     if os.path.exists(args.settings) and args.backup_dir:
@@ -67,7 +73,7 @@ def main():
     with open(args.settings, "w") as f:
         json.dump(config, f, indent=2)
         f.write("\n")
-    print(f"updated  {args.settings} (+{added} hook entries)")
+    print(f"updated  {args.settings} ({summary})")
     return 0
 
 

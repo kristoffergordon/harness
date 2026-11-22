@@ -54,3 +54,8 @@ Not done: the Pocock plugin also provides `tdd`, `wizard`, `grill-me` and `writi
 
 ### 15 · Repo renamed `skills` to `harness`
 The repo already carries `CLAUDE.md`, hooks and an installer, and is meant to grow beyond skills. Renamed on GitHub while there is one clone. The local folder keeps its old name on purpose: every symlink in `~/.claude` points at it, and the folder name affects nothing. The `skills/` subfolder stays. Still Claude Code only (#1); the name does not claim otherwise.
+
+### 16 · Self-verifier and secret-path deny rules, from the second look at Simon's harness
+This repo now has `.agent/verify.sh` (runs `hooks/test/run.sh`), so the verify-turn hook checks edits to the harness itself. Simon's pre-commit hook was not copied: the Stop hook already runs the same checks.
+Secret paths are blocked with Claude Code's own `permissions.deny`, merged by `merge_settings.py` from `scripts/settings.fragment.json` (renamed from `hooks.fragment.json`), instead of a custom sandbox like his. Only Read rules, so Bash `cat` is not covered. `.env.example` and similar stay readable on purpose; only `.env`, `.env.local`, `.env.*.local` and `.env.production` are denied. Revisit if a secret file shows up under another name.
+Not adopted: his read-routing to a cheaper model (no measured saving, and it sends client files to a second call) and per-area `decisions/` files (this file is too small to need them).
