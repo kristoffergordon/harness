@@ -59,3 +59,6 @@ The repo already carries `CLAUDE.md`, hooks and an installer, and is meant to gr
 This repo now has `.agent/verify.sh` (runs `hooks/test/run.sh`), so the verify-turn hook checks edits to the harness itself. Simon's pre-commit hook was not copied: the Stop hook already runs the same checks.
 Secret paths are blocked with Claude Code's own `permissions.deny`, merged by `merge_settings.py` from `scripts/settings.fragment.json` (renamed from `hooks.fragment.json`), instead of a custom sandbox like his. Only Read rules, so Bash `cat` is not covered. `.env.example` and similar stay readable on purpose; only `.env`, `.env.local`, `.env.*.local` and `.env.production` are denied. Revisit if a secret file shows up under another name.
 Not adopted: his read-routing to a cheaper model (no measured saving, and it sends client files to a second call) and per-area `decisions/` files (this file is too small to need them).
+
+### 17 · `research` replaces `primary-source-research`
+Pocock's `research` (background agent, findings written to a Markdown file) and Simon's `primary-source-research` (inline) had overlapping model-invoked triggers, so either could fire. Kept `research`.
